@@ -1,3 +1,12 @@
+userPath = ""
+
+echo "Enter the path to Discord on your computer [press Enter to use default path]:"
+read userPath
+
+if [userPath != ""]:
+  exports.getAppDir = userPath
+fi
+
 const PATHS = {
   stable: '/Applications/Discord.app/Contents/Resources/app',
   ptb: '/Applications/Discord PTB.app/Contents/Resources/app',

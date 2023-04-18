@@ -1,11 +1,18 @@
-userPath = ""
+let userPath = ""
 
-echo "Enter the path to Discord on your computer [press Enter to use default path]:"
-read userPath
+let rl = readline.createInterface(process.stdin, process.stdout)
+rl.question("Enter the path to Discord on your computer [press Enter to use default path]:", (userPath) => { rl.close() })
 
-if [userPath != ""]:
-  exports.getAppDir = userPath
-else:
+if (userPath != "") {
+  const PATHS = {
+    stable: userPath,
+    ptb: userPath,
+    canary: userPath,
+    dev: userPath
+  }
+  
+  exports.getAppDir = async (platform) => PATHS[platform]
+} else {
   const PATHS = {
     stable: '/Applications/Discord.app/Contents/Resources/app',
     ptb: '/Applications/Discord PTB.app/Contents/Resources/app',
@@ -14,4 +21,4 @@ else:
   };
 
   exports.getAppDir = async (platform) => PATHS[platform];
-fi
+}
